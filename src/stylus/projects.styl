@@ -1,0 +1,55 @@
+@import "./common"
+
+.Projects
+	.head
+		height 154px
+		border-bottom 1px solid #eee
+		dd
+			font-size 14px
+			letter-spacing 1px
+			text-align center
+			font-weight bold
+			display inline-block
+			box-sizing border-box
+			width 33.333%
+			height 154px
+			line-height 240px
+			border-right 1px solid #eee
+			background-repeat no-repeat
+			background-size auto 65px
+			background-position center 35px
+			overflow hidden
+			&:first-child
+				border-left 1px solid #eee
+			&:nth-child(1)
+				background-image url(../images/icons/project-1.png)
+			&:nth-child(2)
+				background-image url(../images/icons/project-2.png)
+			&:nth-child(3)
+				background-image url(../images/icons/project-3.png)
+			&.On
+				position relative
+				&:before
+					content ''
+					position absolute
+					height 2px
+					width 30px
+					background-color: #4bcec6
+					left 158px
+					top 135px
+	.project
+		height 380px
+		padding-left 450px
+		background-repeat no-repeat
+		background-position 90px center
+		for num in 1 2 3
+			&.item-{num}
+				background-image url('../images/icons/project-'+num+'.png')
+		h6
+			content-title()
+		p
+			color #8c8c8c
+			content-des()
+	.default
+		height 600px
+		background-position 90px 90px
