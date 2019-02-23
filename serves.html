@@ -8,34 +8,37 @@
 </head>
 <body>
 	<div id="app">
-		<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
-		<base-banner :class="'serves-banner'"></base-banner>
-		<section class="Serves default">
-			<dl class="head wrap">
-				<dd v-for='s,i in serves.list'>
-					<span :class="i===serves_index? 'On': ''" 
-					v-html="s.title" 
-					@click="servesClick(i)"></span>
-				</dd>
-			</dl>
-			<div class="content wrap" :class="'s-item-'+(serves_index+1)">
-				<h4 v-html="serves.list[serves_index].title + (serves.list[serves_index].subtitle? '-- ' + serves.list[serves_index].subtitle : '')"></h4>
-				<p v-if="!serves.list[serves_index].brands" 
-					v-for="p in serves.list[serves_index].des" 
-					v-html="p"></p>
-				<template v-if="serves.list[serves_index].brands">
-					<img src="dist/images/icons/0cc47dc5d9fbf29f7146f536bf8805f4.png" alt="">
-					<img v-for="b in serves.list[serves_index].brands" 
-						:src="'src/images/serves/'+b" alt="">
-				</template>
-			</div>
-			<div class="other wrap" v-if="serves.list[serves_index].other" 
-				v-for="o in serves.list[serves_index].other">
-				<h4 v-html="o.title"></h4>
-				<img :src="o.imgUrl" alt="">	
-			</div>
-		</section>
-		<base-footer :base_info="base_info"></base-footer>
+		<base-loading v-if="!menu"></base-loading>
+		<template v-else>
+			<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
+			<base-banner :class="'serves-banner'"></base-banner>
+			<section class="Serves default">
+				<dl class="head wrap">
+					<dd v-for='s,i in serves.list'>
+						<span :class="i===serves_index? 'On': ''" 
+						v-html="s.title" 
+						@click="servesClick(i)"></span>
+					</dd>
+				</dl>
+				<div class="content wrap" :class="'s-item-'+(serves_index+1)">
+					<h4 v-html="serves.list[serves_index].title + (serves.list[serves_index].subtitle? '-- ' + serves.list[serves_index].subtitle : '')"></h4>
+					<p v-if="!serves.list[serves_index].brands" 
+						v-for="p in serves.list[serves_index].des" 
+						v-html="p"></p>
+					<template v-if="serves.list[serves_index].brands">
+						<img src="dist/images/icons/0cc47dc5d9fbf29f7146f536bf8805f4.png" alt="">
+						<img v-for="b in serves.list[serves_index].brands" 
+							:src="'src/images/serves/'+b" alt="">
+					</template>
+				</div>
+				<div class="other wrap" v-if="serves.list[serves_index].other" 
+					v-for="o in serves.list[serves_index].other">
+					<h4 v-html="o.title"></h4>
+					<img :src="o.imgUrl" alt="">	
+				</div>
+			</section>
+			<base-footer :base_info="base_info"></base-footer>
+		</template>
 	</div>
 	<script src="src/vue.js"></script>
 	<script type="text/javascript" src="dist/serves.js"></script>

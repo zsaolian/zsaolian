@@ -8,15 +8,18 @@
 </head>
 <body>
 	<div id="app">
-		<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
-		<base-banner :class="'about-banner'"></base-banner>
-		<div class="about-page wrap">
-			<template v-for="a,i in about">
-				<h2 v-html="a.title" :class="i===1? 'topLine' : ''"></h2>
-				<p v-for="d in a.des" v-html="d"></p>
-			</template>
-		</div>
-		<base-footer :base_info="base_info"></base-footer>
+		<base-loading v-if="!menu"></base-loading>
+		<template v-else>
+			<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
+			<base-banner :class="'about-banner'"></base-banner>
+			<div class="about-page wrap">
+				<template v-for="a,i in about">
+					<h2 v-html="a.title" :class="i===1? 'topLine' : ''"></h2>
+					<p v-for="d in a.des" v-html="d"></p>
+				</template>
+			</div>
+			<base-footer :base_info="base_info"></base-footer>
+		</template>
 	</div>
 	<script src="src/vue.js"></script>
 	<script type="text/javascript" src="dist/about.js"></script>

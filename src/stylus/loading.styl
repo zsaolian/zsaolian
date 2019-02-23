@@ -1,0 +1,64 @@
+// Loading 动画
+// @media screen and (max-width: 1050px)
+// 	loading-circle-size = 20px
+loading-circle-size = 8px
+loading-time = 1.5s
+.Loading
+	width 100%
+	position fixed
+	top 50%
+	margin-top -150px
+	text-align center
+	span
+		display inline-block
+		width loading-circle-size * 2
+		height loading-circle-size * 2
+		border-radius loading-circle-size
+		transform scale(0, 0)
+		background-color base-blue
+		animation-duration loading-time
+		animation-timing-function linear
+		animation-iteration-count infinite
+		@media screen and (max-width: 1050px)
+			width 20px * 2
+			height 20px * 2
+			border-radius 20px
+		&:nth-child(1)
+			animation-name animate-loading-show-1
+		&:nth-child(2)
+			animation-name animate-loading-show-2
+			margin-left -5px
+			margin-right -5px
+		&:nth-child(3)
+			animation-name animate-loading-show-3
+	p
+		font-size 11px
+		color base-color-1
+		line-height 40px
+		@media screen and (max-width: 1050px)
+			font-size 28px
+			line-height 120px
+
+@keyframes animate-loading-show-1
+	25%
+		transform scale(1, 1)
+	50%
+		transform scale(0, 0)
+	100%
+		transform scale(0, 0)
+
+@keyframes animate-loading-show-2
+	25%
+		transform scale(0, 0)
+	50%
+		transform scale(1, 1)
+	75%
+		transform scale(0, 0)
+
+@keyframes animate-loading-show-3
+	50%
+		transform scale(0, 0)
+	75%
+		transform scale(1, 1)
+	100%
+		transform scale(0, 0)

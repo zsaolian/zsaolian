@@ -8,24 +8,27 @@
 </head>
 <body>
 	<div id="app">
-		<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
-		<base-banner :class="'projects-banner'"></base-banner>
-		<section class="Projects">
-			<div class="head">
-				<dl class="wrap">
-					<dd v-for='p,i in projects.list' 
-					v-html="p.project" 
-					:class="i === project_index ? 'On': '' " 
-					@mouseover="proHover(i)"></dd>
-				</dl>
-			</div>
-			<div class="project wrap default" :class="'item-'+ (project_index+1)">
-				<h6 v-html="projects.list[project_index].project"></h6>
-				<!-- <p v-html="projects.list[project_index].des[0]"></p> -->
-				<p v-for="p in projects.list[project_index].des" v-html="p"></p>
-			</div>
-		</section>
-		<base-footer :base_info="base_info"></base-footer>
+		<base-loading v-if="!menu"></base-loading>
+		<template v-else>
+			<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
+			<base-banner :class="'projects-banner'"></base-banner>
+			<section class="Projects">
+				<div class="head">
+					<dl class="wrap">
+						<dd v-for='p,i in projects.list' 
+						v-html="p.project" 
+						:class="i === project_index ? 'On': '' " 
+						@mouseover="proHover(i)"></dd>
+					</dl>
+				</div>
+				<div class="project wrap default" :class="'item-'+ (project_index+1)">
+					<h6 v-html="projects.list[project_index].project"></h6>
+					<!-- <p v-html="projects.list[project_index].des[0]"></p> -->
+					<p v-for="p in projects.list[project_index].des" v-html="p"></p>
+				</div>
+			</section>
+			<base-footer :base_info="base_info"></base-footer>
+		</template>
 	</div>
 	<script src="src/vue.js"></script>
 	<script type="text/javascript" src="dist/projects.js"></script>

@@ -9,102 +9,105 @@
 </head>
 <body>
 	<div id="app">
-		<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
-		<base-banner :class="'index-banner'" :about="about"></base-banner>
-		<section class="Projects">
-			<div class="head">
-				<dl class="wrap">
-					<dd v-for='p,i in projects.list' 
-					v-html="p.project" 
-					:class="i === project_index ? 'On': '' " 
-					@mouseover="proHover(i)"></dd>
-				</dl>
-			</div>
-			<div class="project wrap" :class="'item-'+ (project_index+1)">
-				<h6 v-html="projects.list[project_index].project"></h6>
-				<p v-html="projects.list[project_index].des[0]"></p>
-			</div>
-		</section>
-		<section class="Serves index">
-			<h5 v-html="serves.title_en"></h5>
-			<h6 v-html="serves.title"></h6>
-			<dl class="head wrap">
-				<dd v-for='s,i in serves.list'>
-					<span :class="i===serves_index? 'On': ''" 
-					v-html="s.title" 
-					@click="servesClick(i)"></span>
-				</dd>
-			</dl>
-			<div class="content wrap" :class="'s-item-'+(serves_index+1)">
-				<h4 v-html="serves.list[serves_index].title + (serves.list[serves_index].subtitle? '-- ' + serves.list[serves_index].subtitle : '')"></h4>
-				<p v-if="!serves.list[serves_index].brands" v-html="serves.list[serves_index].des[0]"></p>
-				<template v-if="serves.list[serves_index].brands">
-					<img src="dist/images/icons/15f2ae1620706bf7fd3e647ddba1ba1c.png" alt="">
-					<img v-for="b in serves.list[serves_index].brands" 
-						:src="'src/images/serves/'+b" alt="">
-				</template>
-			</div>
-		</section>
-		<section class="Philosophy">
-			<div class="wrap">
-				<h5 v-html="philosophy.title_en"></h5>
-				<h6 v-html="philosophy.title"></h6>
-				<p v-for="d in philosophy.des" v-html="d"></p>
-			</div>
-		</section>
-		<section class="Partner">
-			<div class="wrap">
-				<h5 v-html="partner.title_en"></h5>
-				<h6 v-html="partner.title"></h6>
-				<div class="arrow">
-					<span class="arrow-1" 
-						@click="showPartner('left')" 
-						:class="partner_list_index === 0? 'unclick': '' "></span>
-					<span class="arrow-2" 
-						@click="showPartner('right')" 
-						:class="partner_list_index === partner_list_length-2? 'unclick': '' "></span>
-				</div>
-				<div class="list">
-					<dl ref="partnerList">
-						<dd v-for="p in partner.list">
-							<img :src="'src/images/partner/'+p.picture" alt="">
-							<span v-html="p.brand"></span>
-						</dd>
+		<base-loading v-if="!menu"></base-loading>
+		<template v-else>
+			<base-header :base_info="base_info" :menus="menu" :menu_index="menu_index"></base-header>
+			<base-banner :class="'index-banner'" :about="about"></base-banner>
+			<section class="Projects">
+				<div class="head">
+					<dl class="wrap">
+						<dd v-for='p,i in projects.list' 
+						v-html="p.project" 
+						:class="i === project_index ? 'On': '' " 
+						@mouseover="proHover(i)"></dd>
 					</dl>
 				</div>
-			</div>
-		</section>
-		<section class="Form">
-			<div class="wrap">
-				<h4 v-html="form.title_en"></h4>
-				<h5 v-html="form.title"></h5>
-				<div class="welcome">
-					<h6 v-html="form.welcome[0]"></h6>
-					<p v-html="form.welcome[1]"></p>
-					<ul>
-						<li v-html="form.welcome[2]"></li>
-						<li v-html="form.welcome[3]"></li>
-						<li v-html="form.welcome[4]"></li>
+				<div class="project wrap" :class="'item-'+ (project_index+1)">
+					<h6 v-html="projects.list[project_index].project"></h6>
+					<p v-html="projects.list[project_index].des[0]"></p>
+				</div>
+			</section>
+			<section class="Serves index">
+				<h5 v-html="serves.title_en"></h5>
+				<h6 v-html="serves.title"></h6>
+				<dl class="head wrap">
+					<dd v-for='s,i in serves.list'>
+						<span :class="i===serves_index? 'On': ''" 
+						v-html="s.title" 
+						@click="servesClick(i)"></span>
+					</dd>
+				</dl>
+				<div class="content wrap" :class="'s-item-'+(serves_index+1)">
+					<h4 v-html="serves.list[serves_index].title + (serves.list[serves_index].subtitle? '-- ' + serves.list[serves_index].subtitle : '')"></h4>
+					<p v-if="!serves.list[serves_index].brands" v-html="serves.list[serves_index].des[0]"></p>
+					<template v-if="serves.list[serves_index].brands">
+						<img src="dist/images/icons/15f2ae1620706bf7fd3e647ddba1ba1c.png" alt="">
+						<img v-for="b in serves.list[serves_index].brands" 
+							:src="'src/images/serves/'+b" alt="">
+					</template>
+				</div>
+			</section>
+			<section class="Philosophy">
+				<div class="wrap">
+					<h5 v-html="philosophy.title_en"></h5>
+					<h6 v-html="philosophy.title"></h6>
+					<p v-for="d in philosophy.des" v-html="d"></p>
+				</div>
+			</section>
+			<section class="Partner">
+				<div class="wrap">
+					<h5 v-html="partner.title_en"></h5>
+					<h6 v-html="partner.title"></h6>
+					<div class="arrow">
+						<span class="arrow-1" 
+							@click="showPartner('left')" 
+							:class="partner_list_index === 0? 'unclick': '' "></span>
+						<span class="arrow-2" 
+							@click="showPartner('right')" 
+							:class="partner_list_index === partner_list_length-2? 'unclick': '' "></span>
+					</div>
+					<div class="list">
+						<dl ref="partnerList">
+							<dd v-for="p in partner.list">
+								<img :src="'src/images/partner/'+p.picture" alt="">
+								<span v-html="p.brand"></span>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</section>
+			<section class="Form">
+				<div class="wrap">
+					<h4 v-html="form.title_en"></h4>
+					<h5 v-html="form.title"></h5>
+					<div class="welcome">
+						<h6 v-html="form.welcome[0]"></h6>
+						<p v-html="form.welcome[1]"></p>
+						<ul>
+							<li v-html="form.welcome[2]"></li>
+							<li v-html="form.welcome[3]"></li>
+							<li v-html="form.welcome[4]"></li>
+						</ul>
+					</div>
+					<ul class="table">
+						<li v-for="f,i in form.table">
+							<span v-html="f.title_cn + ' ' + f.title_en"></span>
+							<textarea v-if="i === form.table.length-1" name="" id="" cols="30" rows="10" :placeholder="f.tip"></textarea>
+							<input v-else type="text" :placeholder="f.tip">
+						</li>
+						<li>
+							<button v-html="form.button_text"></button>
+						</li>
 					</ul>
 				</div>
-				<ul class="table">
-					<li v-for="f,i in form.table">
-						<span v-html="f.title_cn + ' ' + f.title_en"></span>
-						<textarea v-if="i === form.table.length-1" name="" id="" cols="30" rows="10" :placeholder="f.tip"></textarea>
-						<input v-else type="text" :placeholder="f.tip">
-					</li>
-					<li>
-						<button v-html="form.button_text"></button>
-					</li>
-				</ul>
-			</div>
-		</section>
-		<!-- <section class="footer">
-			<div class="wrap">
-				<span v-for="f in footer" v-html="f"></span>
-			</div>
-		</section> -->
-		<base-footer :base_info="base_info"></base-footer>
+			</section>
+			<!-- <section class="footer">
+				<div class="wrap">
+					<span v-for="f in footer" v-html="f"></span>
+				</div>
+			</section> -->
+			<base-footer :base_info="base_info"></base-footer>
+		</template>
 	</div>
 	<script src="src/vue.js"></script>
 	<script type="text/javascript" src="dist/app.js"></script>
