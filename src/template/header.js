@@ -6,7 +6,7 @@ Vue.component('base-header', {
 				<div class="wrap">{{base_info['phone']}} &nbsp;&nbsp;&nbsp;&nbsp; {{base_info['email']}}</div>
 			</div>
 			<div class="wrap">
-				<h1 class="logo"></h1>
+				<h1 class="logo" :title="base_info['company']"><a href="/"></a>{{base_info['company']}}</h1>
 				<ul class="menu">
 					<li v-for='m,i in menus'>
 						<a v-html='m.title' :href="m.link" :class="i === menu_index? 'Stand': ''"></a>

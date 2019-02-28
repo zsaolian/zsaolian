@@ -21,10 +21,14 @@ var menu = [
 			link: 'process.html'
 		},
 		{
-			title: '客户操作',
-			link: ''
+			title: '联系我们',
+			link: '###'
 		}
 	]
+var base_info = {
+	email: 'info@cx-m.com',
+	phone: '0760-2360 8918'
+}
 
 export var data = {
 	menu: menu,
@@ -159,9 +163,9 @@ export var data = {
 		welcome: [
 			'Hello，你好！',
 			'感谢你来到傲联文化策划（中山），若你能有合作意向，请您为我们留言或者使用以下方式联系我们，我们将尽快给你回复，并为你提供真诚的服务，谢谢！',
-			'info@cx-m.com',
-			'0760-8880 3783',
-			'广东省中山市东区博爱五路21号大东裕大厦706',
+			base_info.email,
+			base_info.phone,
+			'广东省中山市三乡镇鸦岗工业区',
 		],
 		table: [
 			{
@@ -180,7 +184,7 @@ export var data = {
 			},
 			{
 				title_cn: '邮箱',
-				title_en: 'emai',
+				title_en: 'email',
 				type: 'input',
 				tip: '请输入您的邮箱',
 				content: ''
@@ -196,8 +200,9 @@ export var data = {
 		button_text: '提交'
 	},
 	base_info: {
-		email: '电子邮箱：info@cx-m.com',
-		phone: '联系电话：0760-8880 3783',
-		company: '傲联文化策划（中山）有限公司 · 粤ICP备 160108585号 - 1'
+		email: '电子邮箱：'+ base_info.email,
+		phone: '联系电话：'+ base_info.phone,
+		filing: '粤ICP备 160108585号 - 1',
+		company: '傲联文化策划（中山）有限公司'
 	}
 }
