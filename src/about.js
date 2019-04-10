@@ -12,7 +12,7 @@ var app = new Vue({
 	el: '#app',
 	data() {
 		return {
-			menu: '',
+			menu: data['menu'],
 			menu_index: 1,
 			about: [
 				data['about'],
@@ -22,10 +22,10 @@ var app = new Vue({
 		}
 	},
 	mounted() {
-		var self = this
-		setTimeout(function(){
-			self.menu = data['menu']
-		},1800)
+		// var self = this
+		// setTimeout(function(){
+		// 	self.menu = data['menu']
+		// },1800)
 	},
 	methods: {
 	},
